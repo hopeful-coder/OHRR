@@ -24,7 +24,6 @@ names(recid)[8:ncol(recid)] <- recid[1, c(8:ncol(recid))]
 recid <- recid[6:nrow(recid),]
 recid$Gender <- tolower(recid$Gender)
 
-
 full_id = read.csv("C:/Users/Mitchell Schepps/Desktop/nena/full_id.csv")
 names(full_id)[5] = 'UCLACLIENTID'
 names(full_id)[1] = 'BookingNumber'
@@ -38,23 +37,18 @@ table(recid$Gender, recid$GROUPASSIGNED)
 withdrawal <- c(2024, 2029, 2034, 2040, 2045, 1058)
 withd <- which(recid$UCLACLIENTID %in% withdrawal)
 recid <- recid[-withd,]
-
 names(labels)[1] <- 'Variable'
 names(labels)[5] <- 'Name'
 
 names(group)[1] <- 'ID1'
 data <- merge(OHRR_All_Flattened, group, by = 'ID1')
-
 withdrawal <- c(2024, 2029, 2034, 2040, 2045, 1058)
 
 data <- data[!data$ID1 %in% withdrawal,]
 data$age <- 2019 - data$QDS_BL_DEM1Y
-
 recid = recid[order(recid$UCLACLIENTID), ]
 data = data[order(data$ID1), ]
-
 recid$GROUPASSIGNED == data$GROUP
-
 
 #Follow-up Indicator
 data$follow_up <- ifelse(is.na(data$QDS_FU_DEM3), 0, 1)
@@ -126,9 +120,9 @@ for(i in 1:35){
   c = table(data[[var2]], data$GROUP, useNA = 'always')[2]
   d = table(data[[var2]], data$GROUP, useNA = 'always')[5]
   #Make table
-  attachment = data.frame('Control' = c(paste0(a, '/', a+c, ' (', round(a/(a+b) * 100, 0), '%)')),
+  attachment = data.frame('Control' = c(paste0(a, '/', a+c, ' (', round(a/(a+c) * 100, 0), '%)')),
                           'HealthN' = c(paste0(b, '/', b+d, ' (', round(b/(b+d) * 100, 0), '%)')),
-                          'Overall' = c(paste0(a + b, '/', a + b + c + d, ' (', round((a +c)/(a+b+c+d) * 100, 0), '%)')),
+                          'Overall' = c(paste0(a + b, '/', a + b + c + d, ' (', round((a + b)/(a+b+c+d) * 100, 0), '%)')),
                           'P-value' = fisher.test(matrix(c(a, a+c, b, b+d), ncol = 2))[1]$p.value)
   #Attach row names
   rownames(attachment) = var.names$name[i]
