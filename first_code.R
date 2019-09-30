@@ -95,6 +95,13 @@ recid$follow_up = data$follow_up
 #MD7A.	Do you wish to receive an exam exam for eyeglasses?
 
 for(i in 1:7){
+  var1 = paste0('QDS_FU_MHT', i)
+  var2 = paste0(var1, 'A')
   
+  a = table(data[[var1]], data$GROUP, useNA ='always')[2]
+  b = table(data[[var1]], data$GROUP, useNA = 'always')[4]
+  
+  c = table(data[[var2]], data$GROUP, useNA = 'always')[2]
+  d = table(data[[var2]], data$GROUP, useNA = 'always')[4]
 }
 
