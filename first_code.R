@@ -72,29 +72,39 @@ recid$follow_up = data$follow_up
 #MHT5.	obtain prescription meds for psychological problems?
 #MHT6.	receive education and management on how to use your meds?
 #MHT7.	receive help with managing your symptoms?
-#MD1.	receive medical/dental insurance?
-#MD2.	receive a medical exam by a doctor, nurse, or physician assistant?
-#MD3.	receive prescription medications for health problems?
-#MD4.	receive dental care (i.e., exam, cleaning, filling, crown)?
-#MD5.	receive HIV/AIDS prevention and education?
-#MD6.	receive Hepatitis C testing/education/treatment?
-#MD7.	receive an exam exam for eyeglasses?
+#MD1.	 medical/dental insurance?
+#MD2.	 a medical exam by a doctor, nurse, or physician assistant?
+#MD3.	 prescription medications for health problems?
+#MD4.	 dental care (i.e., exam, cleaning, filling, crown)?
+#MD5.	 HIV/AIDS prevention and education?
+#MD6.	 Hepatitis C testing/education/treatment?
+#MD7.	 an exam exam for eyeglasses?
 
-mht = data.frame(variable = c(paste0('MHT', 1:7)),
-                 name     = c('receive a diagnosis/assessment of mental illness?',
-                              'receive inpatient mental health treatment?',
-                              'receive individual counseling?',
-                              'receive group counseling?',
-                              'obtain prescription meds for psychological problems?',
-                              'receive education and management on how to use your meds?',
-                              'receive help with managing your symptoms?'
+var.names = data.frame(variable = c(paste0('MHT', 1:7),
+                                    paste0('MD', 1:7)),
+                 name     = c(#MHT
+                              'Diagnosis/assessment of mental illness?',
+                              'Inpatient mental health treatment?',
+                              'Individual counseling?',
+                              'Group counseling?',
+                              'Prescription meds for psychological problems?',
+                              'Education and management on how to use your medication?',
+                              'Help with managing your symptoms?',
+                              #MD
+                              'Medical/dental insurance?',
+                              'Medical exam by a doctor, nurse, or physician assistant?',
+                              'Prescription medications for health problems?',
+                              'Dental care (i.e., exam, cleaning, filling, crown)?',
+                              'HIV/AIDS prevention and education?',
+                              'Hepatitis C testing/education/treatment?',
+                              'Exam for eyeglasses?'
                               ))
 attachment_large = data.frame('Control' = c(),
                               'HealthN' = c(),
                               'Overall' = c())
-for(i in 1:7){
+for(i in 1:14){
   #Variable Name
-  var1 = paste0('QDS_FU_MHT', i)
+  var1 = paste0('QDS_FU_', var.names$variable[i])
   var2 = paste0(var1, 'A')
   
   #Extract variables
@@ -106,7 +116,7 @@ for(i in 1:7){
   attachment = data.frame('Control' = c(paste0(a, '/', a+b, ' (', round(a/(a+b) * 100, 0), '%)')),
                           'HealthN' = c(paste0(c, '/', c+d, ' (', round(c/(c+d) * 100, 0), '%)')),
                           'Overall' = c(paste0(a + c, '/', a + b + c + d, ' (', round((a +c)/(a+b+c+d) * 100, 0), '%)')))
-  rownames(attachment) = mht$name[i]
+  rownames(attachment) = var.names$name[i]
   attachment_large = rbind(attachment_large, attachment)
 }
 
