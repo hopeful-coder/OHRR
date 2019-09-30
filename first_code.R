@@ -80,7 +80,7 @@ recid$follow_up = data$follow_up
 #MD6.	receive Hepatitis C testing/education/treatment?
 #MD7.	receive an exam exam for eyeglasses?
 
-mht = data.frame(variable = 1:7,
+mht = data.frame(variable = c(paste0('MHT', 1:7)),
                  name     = c('receive a diagnosis/assessment of mental illness?',
                               'receive inpatient mental health treatment?',
                               'receive individual counseling?',
@@ -90,7 +90,8 @@ mht = data.frame(variable = 1:7,
                               'receive help with managing your symptoms?'
                               ))
 attachment_large = data.frame('Control' = c(),
-                              'HealthN' = c())
+                              'HealthN' = c(),
+                              'Overall' = c())
 for(i in 1:7){
   #Variable Name
   var1 = paste0('QDS_FU_MHT', i)
@@ -103,7 +104,8 @@ for(i in 1:7){
   d = table(data[[var2]], data$GROUP, useNA = 'always')[4]
   
   attachment = data.frame('Control' = c(paste0(a, '/', a+b, ' (', round(a/(a+b) * 100, 0), '%)')),
-                          'HealthN' = c(paste0(c, '/', c+d, ' (', round(c/(c+d) * 100, 0), '%)')))
+                          'HealthN' = c(paste0(c, '/', c+d, ' (', round(c/(c+d) * 100, 0), '%)')),
+                          'Overall' = c(paste0(a + c, '/', a + b + c + d, ' (', round((a +c)/(a+b+c+d) * 100, 0), '%)')))
   rownames(attachment) = mht$name[i]
   attachment_large = rbind(attachment_large, attachment)
 }
