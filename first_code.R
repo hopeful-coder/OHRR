@@ -56,5 +56,10 @@ data = data[order(data$ID1), ]
 recid$GROUPASSIGNED == data$GROUP
 
 
-a <- table(recid$Gender, recid$GROUPASSIGNED)
-b <- prop.table(a, 2)
+#Follow-up Indicator
+data$follow_up <- ifelse(is.na(data$QDS_FU_DEM3), 0, 1)
+recid = recid[order(recid$UCLACLIENTID), ]
+data = data[order(data$ID1), ]
+recid$follow_up = data$follow_up
+
+
