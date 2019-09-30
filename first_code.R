@@ -65,24 +65,23 @@ recid$follow_up = data$follow_up
 ###############################################################################
 #Addendum to Nena's research
 
-var.names = data.frame(variable = c(paste0('MHT', 1:7),
-                                    paste0('MD', 1:7)),
-                 name     = c(#MHT
-                              'Diagnosis/assessment of mental illness',
+mht = c('Diagnosis/assessment of mental illness',
                               'Inpatient mental health treatment',
                               'Individual counseling',
                               'Group counseling',
                               'Prescription meds for psychological problems',
                               'Education and management on how to use your medication',
-                              'Help with managing your symptoms',
-                              #MD
-                              'Medical/dental insurance',
-                              'Medical exam by a doctor, nurse, or physician assistant',
-                              'Prescription medications for health problems',
-                              'Dental care (i.e., exam, cleaning, filling, crown)',
-                              'HIV/AIDS prevention and education',
-                              'Hepatitis C testing/education/treatment',
-                              'Exam for eyeglasses'
+                              'Help with managing your symptoms')
+md = c( 'Medical/dental insurance',
+        'Medical exam by a doctor, nurse, or physician assistant',
+        'Prescription medications for health problems',
+        'Dental care (i.e., exam, cleaning, filling, crown)',
+        'HIV/AIDS prevention and education',
+        'Hepatitis C testing/education/treatment',
+        'Exam for eyeglasses')
+var.names = data.frame(variable = c(paste0('MHT', 1:length(mht)),
+                                    paste0('MD', 1:length(md))),
+                 name     = c(mht, md
                               ))
 attachment_large = data.frame('Control' = c(),
                               'HealthN' = c(),
