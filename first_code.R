@@ -66,12 +66,12 @@ recid$follow_up = data$follow_up
 #Addendum to Nena's research
 
 mht = c('Diagnosis/assessment of mental illness',
-                              'Inpatient mental health treatment',
-                              'Individual counseling',
-                              'Group counseling',
-                              'Prescription meds for psychological problems',
-                              'Education and management on how to use your medication',
-                              'Help with managing your symptoms')
+        'Inpatient mental health treatment',
+        'Individual counseling',
+        'Group counseling',
+        'Prescription meds for psychological problems',
+        'Education and management on how to use your medication',
+        'Help with managing your symptoms')
 md = c( 'Medical/dental insurance',
         'Medical exam by a doctor, nurse, or physician assistant',
         'Prescription medications for health problems',
@@ -79,28 +79,34 @@ md = c( 'Medical/dental insurance',
         'HIV/AIDS prevention and education',
         'Hepatitis C testing/education/treatment',
         'Exam for eyeglasses')
+
 var.names = data.frame(variable = c(paste0('MHT', 1:length(mht)),
                                     paste0('MD', 1:length(md))),
-                 name     = c(mht, md
-                              ))
+                 name     = c(mht, md)
+                 )
+
+#Begin Table
 attachment_large = data.frame('Control' = c(),
                               'HealthN' = c(),
-                              'Overall' = c())
+                              'Overall' = c(),
+                              'P-value' = c())
 for(i in 1:14){
   #Variable Name
   var1 = paste0('QDS_FU_', var.names$variable[i])
   var2 = paste0(var1, 'A')
-  
   #Extract variables
   a = table(data[[var1]], data$GROUP, useNA ='always')[2]
   b = table(data[[var1]], data$GROUP, useNA = 'always')[5]
   c = table(data[[var2]], data$GROUP, useNA = 'always')[2]
   d = table(data[[var2]], data$GROUP, useNA = 'always')[5]
-  
+  #Make table
   attachment = data.frame('Control' = c(paste0(a, '/', a+c, ' (', round(a/(a+b) * 100, 0), '%)')),
                           'HealthN' = c(paste0(b, '/', b+d, ' (', round(b/(b+d) * 100, 0), '%)')),
-                          'Overall' = c(paste0(a + b, '/', a + b + c + d, ' (', round((a +c)/(a+b+c+d) * 100, 0), '%)')))
+                          'Overall' = c(paste0(a + b, '/', a + b + c + d, ' (', round((a +c)/(a+b+c+d) * 100, 0), '%)')),
+                          'P-value' = fisher.test(matrix(c(a, a+c, b, b+d), ncol = 2))[1]$p.value)
+  #Attach row names
   rownames(attachment) = var.names$name[i]
+  #Append table
   attachment_large = rbind(attachment_large, attachment)
 }
 
