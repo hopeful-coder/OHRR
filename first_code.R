@@ -62,23 +62,8 @@ recid = recid[order(recid$UCLACLIENTID), ]
 data = data[order(data$ID1), ]
 recid$follow_up = data$follow_up
 
-#
+###############################################################################
 #Addendum to Nena's research
-#Mental Health
-#MHT1.	receive a diagnosis/assessment of mental illness?
-#MHT2.	receive inpatient mental health treatment?
-#MHT3.	receive individual counseling?
-#MHT4.	receive group counseling?
-#MHT5.	obtain prescription meds for psychological problems?
-#MHT6.	receive education and management on how to use your meds?
-#MHT7.	receive help with managing your symptoms?
-#MD1.	 medical/dental insurance?
-#MD2.	 a medical exam by a doctor, nurse, or physician assistant?
-#MD3.	 prescription medications for health problems?
-#MD4.	 dental care (i.e., exam, cleaning, filling, crown)?
-#MD5.	 HIV/AIDS prevention and education?
-#MD6.	 Hepatitis C testing/education/treatment?
-#MD7.	 an exam exam for eyeglasses?
 
 var.names = data.frame(variable = c(paste0('MHT', 1:7),
                                     paste0('MD', 1:7)),
@@ -109,14 +94,15 @@ for(i in 1:14){
   
   #Extract variables
   a = table(data[[var1]], data$GROUP, useNA ='always')[2]
-  b = table(data[[var1]], data$GROUP, useNA = 'always')[4]
+  b = table(data[[var1]], data$GROUP, useNA = 'always')[5]
   c = table(data[[var2]], data$GROUP, useNA = 'always')[2]
-  d = table(data[[var2]], data$GROUP, useNA = 'always')[4]
+  d = table(data[[var2]], data$GROUP, useNA = 'always')[5]
   
-  attachment = data.frame('Control' = c(paste0(a, '/', a+b, ' (', round(a/(a+b) * 100, 0), '%)')),
-                          'HealthN' = c(paste0(c, '/', c+d, ' (', round(c/(c+d) * 100, 0), '%)')),
-                          'Overall' = c(paste0(a + c, '/', a + b + c + d, ' (', round((a +c)/(a+b+c+d) * 100, 0), '%)')))
+  attachment = data.frame('Control' = c(paste0(a, '/', a+c, ' (', round(a/(a+b) * 100, 0), '%)')),
+                          'HealthN' = c(paste0(b, '/', b+d, ' (', round(b/(b+d) * 100, 0), '%)')),
+                          'Overall' = c(paste0(a + b, '/', a + b + c + d, ' (', round((a +c)/(a+b+c+d) * 100, 0), '%)')))
   rownames(attachment) = var.names$name[i]
   attachment_large = rbind(attachment_large, attachment)
 }
+
 
