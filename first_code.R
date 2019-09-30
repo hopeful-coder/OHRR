@@ -79,10 +79,36 @@ md = c( 'Medical/dental insurance',
         'HIV/AIDS prevention and education',
         'Hepatitis C testing/education/treatment',
         'Exam for eyeglasses')
+sa = c('detox?',
+       'inpatient treatment (30+ days)',
+       'relapse prevention classes/groups',
+       '12-step groups (e.g., AA, NA)',
+       'Dual Diagnosis support group')
+ev = c('help enrolling in classes',
+       'help finding a job',
+       'help with literacy (i.e., reading skills)',
+       'help with GED classes/exam')
+l =  c('help with navigating the court system',
+       'help with legal problems')
+adl = c('transportation assistance',
+        'help with social skills (e.g., making friends, talking to others)',
+        'help with maintaining relationships',
+        'receive help with daily living skills',
+        'help with money management',
+        'receive help with recreational/social activities')
+bea = c('help getting ID card, drivers license or other documents',
+        'help with finding housing',
+        'help with getting entitlements',
+        'help with storage for personal possessions')
 
 var.names = data.frame(variable = c(paste0('MHT', 1:length(mht)),
-                                    paste0('MD', 1:length(md))),
-                 name     = c(mht, md)
+                                    paste0('MD', 1:length(md)),
+                                    paste0('SA', 1:length(sa)),
+                                    paste0('EV', 1:length(ev)),
+                                    paste0('L',  1:length(l)),
+                                    paste0('ADL', 1:length(adl)),
+                                    paste0('BEA', 1:length(bea))),
+                 name     = c(mht, md, sa, ev, l, adl, bea)
                  )
 
 #Begin Table
@@ -90,7 +116,7 @@ attachment_large = data.frame('Control' = c(),
                               'HealthN' = c(),
                               'Overall' = c(),
                               'P-value' = c())
-for(i in 1:14){
+for(i in 1:35){
   #Variable Name
   var1 = paste0('QDS_FU_', var.names$variable[i])
   var2 = paste0(var1, 'A')
