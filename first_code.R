@@ -62,4 +62,39 @@ recid = recid[order(recid$UCLACLIENTID), ]
 data = data[order(data$ID1), ]
 recid$follow_up = data$follow_up
 
+#
+#Addendum to Nena's research
+#Mental Health
+#MHT1.	In the past 6 months, did you receive a diagnosis/assessment of mental illness?a = data.frame(table(data$QDS_FU_MHT1, data$GROUP, useNA = 'always'))
+#MHT1A.	Do you wish to receive an assessment for mental illness?
+#MHT2.	In the past 6 months, did you receive inpatient mental health treatment?
+#MHT2A.	Do you wish to receive inpatient mental health treatment?
+#MHT3.	In the past 6 months, did you receive individual counseling?
+#MHT3A.	Do you wish to receive individual counseling?
+#MHT4.	In the past 6 months, did you receive group counseling?
+#MHT4A.	Do you wish to receive group counseling?
+#MHT5.	In the past 6 months, did you obtain prescription meds for psychological problems?
+#MHT5A.	Do you wish to obtain prescription meds for psychological problems?
+#MHT6.	In the past 6 months, did you receive education and management on how to use your meds?
+#MHT6A.	Do you wish to receive education and management on how to use your meds?
+#MHT7.	In the past 6 months, did you receive help with managing your symptoms?
+#MHT7A.	Do you wish to receive help with managing your symptoms?
+#MD1.	In the past 6 months, did you receive medical/dental insurance?
+#MD1A.	Do you wish to receive medical/dental insurance?
+#MD2.	In the past 6 months, did you receive a medical exam by a doctor, nurse, or physician assistant?
+#MD2A.	Do you wish to receive a medical exam by a doctor, nurse, or physician assistant?
+#MD3.	In the past 6 months, did you receive prescription medications for health problems?
+#MD3A.	Do you wish to receive prescription medications for health problems?
+#MD4.	In the past 6 months, did you receive dental care (i.e., exam, cleaning, filling, crown)?
+#MD4A.	Do you wish to receive dental care (i.e., exam, cleaning, filling, crown)?
+#MD5.	In the past 6 months, did you receive HIV/AIDS prevention and education?
+#MD5A.	Do you wish to receive HIV/AIDS prevention and education?
+#MD6.	In the past 6 months, did you receive Hepatitis C testing/education/treatment?
+#MD6A.	Do you wish to receive an exam for Hepatitis C testing/education/treatment?
+#MD7.	In the past 6 months, did you receive an exam exam for eyeglasses?
+#MD7A.	Do you wish to receive an exam exam for eyeglasses?
+
+for(i in 1:7){
+  
+}
 
