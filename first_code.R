@@ -105,10 +105,25 @@ for(i in 1:14){
   attachment_large = rbind(attachment_large, attachment)
 }
 
-
+intermediate.mean = c()
 #Create a summary statistic for overall satisfaction with the Health Navigator.
-for(i in 1:40){
-  
+for(i in c(1:4, 10:15, 18:23, 25, 28:40)){
+  var.name = paste0('QDS_FU_CES', i)
+  intermediate.area = data[[var.name]]
+  intermediate.area = ifelse(intermediate.area < 6, intermediate.area, NA)
+  intermediate.mean = c(intermediate.mean, mean(data[[var.name]], na.rm = T))
 }
+mean(intermediate.mean)
+
+
+intermediate.mean = c()
+#Create a summary statistic for overall satisfaction with the Health Navigator.
+for(i in c(5:9, 16:18, 24, 26, 27)){
+  var.name = paste0('QDS_FU_CES', i)
+  intermediate.area = data[[var.name]]
+  intermediate.area = ifelse(intermediate.area < 6, intermediate.area, NA)
+  intermediate.mean = c(intermediate.mean, mean(data[[var.name]], na.rm = T))
+}
+mean(intermediate.mean)
 
 
