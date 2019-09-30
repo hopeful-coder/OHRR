@@ -68,21 +68,21 @@ recid$follow_up = data$follow_up
 var.names = data.frame(variable = c(paste0('MHT', 1:7),
                                     paste0('MD', 1:7)),
                  name     = c(#MHT
-                              'Diagnosis/assessment of mental illness?',
-                              'Inpatient mental health treatment?',
-                              'Individual counseling?',
-                              'Group counseling?',
-                              'Prescription meds for psychological problems?',
-                              'Education and management on how to use your medication?',
-                              'Help with managing your symptoms?',
+                              'Diagnosis/assessment of mental illness',
+                              'Inpatient mental health treatment',
+                              'Individual counseling',
+                              'Group counseling',
+                              'Prescription meds for psychological problems',
+                              'Education and management on how to use your medication',
+                              'Help with managing your symptoms',
                               #MD
-                              'Medical/dental insurance?',
-                              'Medical exam by a doctor, nurse, or physician assistant?',
-                              'Prescription medications for health problems?',
-                              'Dental care (i.e., exam, cleaning, filling, crown)?',
-                              'HIV/AIDS prevention and education?',
-                              'Hepatitis C testing/education/treatment?',
-                              'Exam for eyeglasses?'
+                              'Medical/dental insurance',
+                              'Medical exam by a doctor, nurse, or physician assistant',
+                              'Prescription medications for health problems',
+                              'Dental care (i.e., exam, cleaning, filling, crown)',
+                              'HIV/AIDS prevention and education',
+                              'Hepatitis C testing/education/treatment',
+                              'Exam for eyeglasses'
                               ))
 attachment_large = data.frame('Control' = c(),
                               'HealthN' = c(),
@@ -103,6 +103,12 @@ for(i in 1:14){
                           'Overall' = c(paste0(a + b, '/', a + b + c + d, ' (', round((a +c)/(a+b+c+d) * 100, 0), '%)')))
   rownames(attachment) = var.names$name[i]
   attachment_large = rbind(attachment_large, attachment)
+}
+
+
+#Create a summary statistic for overall satisfaction with the Health Navigator.
+for(i in 1:40){
+  
 }
 
 
